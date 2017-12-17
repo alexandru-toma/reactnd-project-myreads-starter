@@ -1,7 +1,5 @@
 import React from 'react';
-import CurrentlyReading from './MyRead/CurrentlyReading';
-import WantToRead from './MyRead/WantToRead';
-import Read from './MyRead/Read';
+import BookDisplay from './BookDisplay';
 import {Link} from 'react-router-dom';
 
 const MyRead = (props) => {
@@ -12,12 +10,15 @@ const MyRead = (props) => {
                     <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <CurrentlyReading 
-                        currentlyReading={props.currentlyReading}/>
-                    <WantToRead 
-                        wantToRead={props.wantToRead}/>
-                    <Read 
-                        read={props.wantToRead}/>
+                    <BookDisplay 
+                        books={props.currentlyReading}
+                        title="Currently Reading"/>
+                    <BookDisplay 
+                        books={props.wantToRead}
+                        title="Want To Read"/>
+                    <BookDisplay 
+                        books={props.read}
+                        title="Want To Read"/>
                 </div>
             </div>
             <div className="open-search">
