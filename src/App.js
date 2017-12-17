@@ -7,15 +7,21 @@ import {Route} from 'react-router-dom';
 
 class BooksApp extends React.Component {
   state = {
-    books: {}
+    currentlyReading: [],
+    wantToRead: [],
+    read: []
   }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({books})
+      this.setState({
+        currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
+        wantToRead: books.filter( book => book.shelf === 'wantToRead'),
+        read: books.filter( book => book.shelf === 'read')
+      });
     });
   }
-  
+
   render() {
     return (
       <div className="app">
@@ -24,7 +30,9 @@ class BooksApp extends React.Component {
           path="/"
           render={() => (
             <MyRead
-              books={this.state.books}
+              currentlyReading={this.state.currentlyReading}
+              wantToRead={this.state.wantToRead}
+              read={this.state.read}
             />
           )}
         />
