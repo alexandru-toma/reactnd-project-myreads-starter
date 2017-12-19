@@ -12,12 +12,15 @@ const MyRead = (props) => {
                 <div className="list-books-content">
                     <BookDisplay 
                         books={props.currentlyReading}
+                        handleShelfChange={props.handleShelfChange}
                         title="Currently Reading"/>
                     <BookDisplay 
                         books={props.wantToRead}
+                        handleShelfChange={props.handleShelfChange}
                         title="Want To Read"/>
                     <BookDisplay 
                         books={props.read}
+                        handleShelfChange={props.handleShelfChange}
                         title="Read"/>
                 </div>
             </div>
