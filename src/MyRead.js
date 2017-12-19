@@ -18,7 +18,7 @@ const MyRead = (props) => {
                         title="Want To Read"/>
                     <BookDisplay 
                         books={props.read}
-                        title="Want To Read"/>
+                        title="Read"/>
                 </div>
             </div>
             <div className="open-search">
