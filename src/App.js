@@ -9,7 +9,8 @@ class BooksApp extends React.Component {
   state = {
     currentlyReading: [],
     wantToRead: [],
-    read: []
+    read: [],
+    searchResult: []
   }
 
   getAllBooks = () => {
@@ -20,6 +21,12 @@ class BooksApp extends React.Component {
         read: books.filter( book => book.shelf === 'read')
       });
     });
+  }
+  
+  getSearchResult = (query) => {
+    BooksAPI.search(query).then((searchResult) => {
+      this.setState({searchResult});
+    })
   }
 
   handleShelfChange = (bookId, shelf) => {
