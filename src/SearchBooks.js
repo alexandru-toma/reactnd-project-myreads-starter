@@ -5,14 +5,15 @@ import BookItem from './BookItem';
 class SearchBooks extends Component {
 
     handleSearch = (event) => {
+       // event.preventDefault();
         this.props.getSearchResult(event.target.value);
     }
-
+    
     handleShelfChange = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         this.props.handleShelfChange(event.target.id, event.target.value);
       }
-
+    
     render() {
         return (
             <div className="search-books">
@@ -33,6 +34,7 @@ class SearchBooks extends Component {
                           index={index}
                           book={book}
                           handleShelfChange={this.handleShelfChange}
+                          currentShelf={book.shelf ? book.shelf : 'none'}
                         />
                       </li>
                     )}

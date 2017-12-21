@@ -7,29 +7,28 @@ import { Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   state = {
-    currentlyReading: [],
-    wantToRead: [],
-    read: [],
+    myBooks: [],
     searchResult: []
   }
 
   getAllBooks = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({
-        currentlyReading: books.filter(book => book.shelf === 'currentlyReading'),
-        wantToRead: books.filter(book => book.shelf === 'wantToRead'),
-        read: books.filter(book => book.shelf === 'read')
+        myBooks: books
       });
     });
   }
 
   getSearchResult = (query) => {
-    query ?
+    (query.length > 0) ?
       BooksAPI.search(query).then((searchResult) => {
-        !searchResult.error ?
-          this.setState({ searchResult }) :
-          this.setState({ searchResult: [] })
-      }) :
+        if(!searchResult.error){
+          this.setState({ searchResult });
+          this.updateSearchResultsWithShelf();
+        } else {
+          this.setState({ searchResult: [] });
+        }})
+       :
       this.setState({ searchResult: [] });
   }
 
@@ -39,6 +38,19 @@ class BooksApp extends React.Component {
         this.getAllBooks();
       });
     });
+  }
+
+  updateSearchResultsWithShelf = () => {
+    this.setState({
+      searchResult: this.state.searchResult.map(book => {
+        book.shelf = 'none'
+
+        this.state.myBooks.forEach(bookOnShelf => {
+          bookOnShelf.id === book.id && (book.shelf = bookOnShelf.shelf)
+        })
+        return book;
+      })
+    })
   }
 
   componentDidMount() {
@@ -53,9 +65,9 @@ class BooksApp extends React.Component {
           path="/"
           render={() => (
             <MyRead
-              currentlyReading={this.state.currentlyReading}
-              wantToRead={this.state.wantToRead}
-              read={this.state.read}
+              currentlyReading={this.state.myBooks.filter(book => book.shelf === 'currentlyReading')}
+              wantToRead={this.state.myBooks.filter(book => book.shelf === 'wantToRead')}
+              read={this.state.myBooks.filter(book => book.shelf === 'read')}
               handleShelfChange={this.handleShelfChange}
             />
           )}
@@ -74,6 +86,5 @@ class BooksApp extends React.Component {
     )
   }
 }
-
 
 export default BooksApp

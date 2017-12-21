@@ -19,6 +19,7 @@ const BooksDisplay = (props) => {
                 index={index}
                 book={book}
                 handleShelfChange={handleShelfChange}
+                currentShelf={book.shelf}
               />
             </li>
           )}
