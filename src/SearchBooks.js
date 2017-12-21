@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import BookItem from './BookItem';
 
-class SearchBooks extends Component {
+const SearchBooks = (props) => {
 
-    handleSearch = (event) => {
-       // event.preventDefault();
-        this.props.getSearchResult(event.target.value);
+    const handleSearch = (event) => {
+        event.preventDefault();
+        props.getSearchResult(event.target.value);
     }
     
-    handleShelfChange = (event) => {
-        //event.preventDefault();
-        this.props.handleShelfChange(event.target.id, event.target.value);
+   const handleShelfChange = (event) => {
+        event.preventDefault();
+        props.handleShelfChange(event.target.id, event.target.value);
       }
     
-    render() {
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -23,18 +22,18 @@ class SearchBooks extends Component {
                         className="close-search"
                     >Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" onChange={this.handleSearch} placeholder="Search by title or author" />
+                        <input type="text" onChange={handleSearch} placeholder="Search by title or author" />
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                    {this.props.books.map((book, index) => 
+                    {props.books.map((book, index) => 
                         <li key={index}>
                         <BookItem
                           index={index}
                           book={book}
-                          handleShelfChange={this.handleShelfChange}
-                          currentShelf={book.shelf ? book.shelf : 'none'}
+                          handleShelfChange={handleShelfChange}
+                          currentShelf={book.shelf}
                         />
                       </li>
                     )}
@@ -43,6 +42,5 @@ class SearchBooks extends Component {
             </div>
         );
     }
-}
 
 export default SearchBooks;
