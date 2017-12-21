@@ -3,7 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './SearchBooks'
 import MyRead from './MyRead';
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   state = {
@@ -16,17 +16,21 @@ class BooksApp extends React.Component {
   getAllBooks = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({
-        currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
-        wantToRead: books.filter( book => book.shelf === 'wantToRead'),
-        read: books.filter( book => book.shelf === 'read')
+        currentlyReading: books.filter(book => book.shelf === 'currentlyReading'),
+        wantToRead: books.filter(book => book.shelf === 'wantToRead'),
+        read: books.filter(book => book.shelf === 'read')
       });
     });
   }
-  
+
   getSearchResult = (query) => {
-    BooksAPI.search(query).then((searchResult) => {
-      this.setState({searchResult});
-    })
+    query ?
+      BooksAPI.search(query).then((searchResult) => {
+        !searchResult.error ?
+          this.setState({ searchResult }) :
+          this.setState({ searchResult: [] })
+      }) :
+      this.setState({ searchResult: [] });
   }
 
   handleShelfChange = (bookId, shelf) => {
@@ -60,15 +64,16 @@ class BooksApp extends React.Component {
           path="/search"
           render={() => (
             <SearchBooks
-              searchResult={this.state.searchResult}
+              books={this.state.searchResult}
               getSearchResult={this.getSearchResult}
               handleShelfChange={this.handleShelfChange}
             />
           )}
         />
       </div>
-      )}
+    )
   }
+}
 
 
 export default BooksApp
