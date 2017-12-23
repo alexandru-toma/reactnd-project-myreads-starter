@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import BookItem from './BookItem';
 
-const SearchBooks = (props) => {
+class SearchBooks extends Component {
 
-    const handleSearch = (event) => {
-        event.preventDefault();
-        props.getSearchResult(event.target.value);
+    componentDidMount() {
+        //clear page from prevoius searches
+        this.props.getSearchResult('');
     }
-    
-   const handleShelfChange = (event) => {
+
+    handleSearch = (event) => {
         event.preventDefault();
-        props.handleShelfChange(event.target.id, event.target.value);
-      }
-    
+        this.props.getSearchResult(event.target.value);
+    }
+
+    handleShelfChange = (event) => {
+        event.preventDefault();
+        this.props.handleShelfChange(event.target.id, event.target.value);
+        this.props.goHomePage();
+    }
+
+    render() {
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -22,25 +29,26 @@ const SearchBooks = (props) => {
                         className="close-search"
                     >Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" onChange={handleSearch} placeholder="Search by title or author" />
+                        <input type="text" onChange={this.handleSearch} placeholder="Search by title or author" />
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                    {props.books.map((book, index) => 
-                        <li key={index}>
-                        <BookItem
-                          index={index}
-                          book={book}
-                          handleShelfChange={handleShelfChange}
-                          currentShelf={book.shelf}
-                        />
-                      </li>
-                    )}
+                        {this.props.books.map((book, index) =>
+                            <li key={index}>
+                                <BookItem
+                                    index={index}
+                                    book={book}
+                                    handleShelfChange={this.handleShelfChange}
+                                    currentShelf={book.shelf}
+                                />
+                            </li>
+                        )}
                     </ol>
                 </div>
             </div>
         );
     }
+}
 
 export default SearchBooks;

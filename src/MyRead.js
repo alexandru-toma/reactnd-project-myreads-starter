@@ -1,6 +1,6 @@
 import React from 'react';
 import BooksDisplay from './BooksDisplay';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MyRead = (props) => {
     return (
@@ -10,26 +10,26 @@ const MyRead = (props) => {
                     <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
-                    <BooksDisplay 
+                    <BooksDisplay
                         books={props.currentlyReading}
                         handleShelfChange={props.handleShelfChange}
-                        title="Currently Reading"/>
-                    <BooksDisplay 
+                        title="Currently Reading" />
+                    <BooksDisplay
                         books={props.wantToRead}
                         handleShelfChange={props.handleShelfChange}
-                        title="Want To Read"/>
-                    <BooksDisplay 
+                        title="Want To Read" />
+                    <BooksDisplay
                         books={props.read}
                         handleShelfChange={props.handleShelfChange}
-                        title="Read"/>
+                        title="Read" />
                 </div>
             </div>
             <div className="open-search">
-                <Link 
+                <Link
                     to="/search"
                 >Add a book
                 </Link>
-             </div>
+            </div>
         </div>
     );
 }

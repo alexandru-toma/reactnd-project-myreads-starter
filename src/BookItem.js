@@ -1,28 +1,28 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class BookItem extends Component {
-    render(){
-        return (
-            <div>
-                <div className="book">
-                    <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})` }}></div>
-                        <div className="book-shelf-changer">
-                            <select id={this.props.book.id} onChange={this.props.handleShelfChange} value={this.props.currentShelf}>
-                                <option value="moveto" disabled>Move to...</option>
-                                <option value="currentlyReading">Currently Reading</option>
-                                <option value="wantToRead">Want to Read</option>
-                                <option value="read">Read</option>
-                                <option value="none">None</option>
-                            </select>
-                        </div>
+const BookItem = (props) => {
+    return (
+        <div>
+            <div className="book">
+                <div className="book-top">
+                    <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${props.book.imageLinks.smallThumbnail})` }}></div>
+                    <div className="book-shelf-changer">
+                        <select id={props.book.id} onChange={props.handleShelfChange} value={props.currentShelf}>
+                            <option value="moveto" disabled>Move to...</option>
+                            <option value="currentlyReading">Currently Reading</option>
+                            <option value="wantToRead">Want to Read</option>
+                            <option value="read">Read</option>
+                            <option value="none">None</option>
+                        </select>
                     </div>
-                    <div className="book-title">{this.props.book.title}</div>
-                    <div className="book-authors">{this.props.book.authors}</div>
                 </div>
+                <div className="book-title">{props.book.title}</div>
+                {props.book.authors ? props.book.authors.map(author => (
+                    <div key={author} className="book-authors">{author}</div>
+                )) : ''}
             </div>
-        );
-    } 
+        </div>
+    );
 }
 
 export default BookItem;

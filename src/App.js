@@ -22,13 +22,14 @@ class BooksApp extends React.Component {
   getSearchResult = (query) => {
     (query.length > 0) ?
       BooksAPI.search(query).then((searchResult) => {
-        if(!searchResult.error){
+        if (!searchResult.error) {
           this.setState({ searchResult });
           this.updateSearchResultsWithShelf();
         } else {
           this.setState({ searchResult: [] });
-        }})
-       :
+        }
+      })
+      :
       this.setState({ searchResult: [] });
   }
 
@@ -74,11 +75,12 @@ class BooksApp extends React.Component {
         />
         <Route
           path="/search"
-          render={() => (
+          render={({ history }) => (
             <SearchBooks
               books={this.state.searchResult}
               getSearchResult={this.getSearchResult}
               handleShelfChange={this.handleShelfChange}
+              goHomePage={() => { history.push('/') }}
             />
           )}
         />
