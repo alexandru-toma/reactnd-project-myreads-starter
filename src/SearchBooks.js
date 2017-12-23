@@ -17,7 +17,7 @@ class SearchBooks extends Component {
     handleShelfChange = (event) => {
         event.preventDefault();
         this.props.handleShelfChange(event.target.id, event.target.value);
-        this.props.goHomePage();
+        //this.props.goHomePage();
     }
 
     render() {
