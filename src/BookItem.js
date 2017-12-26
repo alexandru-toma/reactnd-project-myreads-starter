@@ -5,7 +5,9 @@ const BookItem = (props) => {
         <div>
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${props.book.imageLinks.smallThumbnail})` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${props.book.imageLinks ? 
+                        props.book.imageLinks.smallThumbnail : 
+                        'http://via.placeholder.com/128x193?text=No%20Cover' })` }}></div>
                     <div className="book-shelf-changer">
                         <select id={props.book.id} onChange={props.handleShelfChange} value={props.currentShelf}>
                             <option value="moveto" disabled>Move to...</option>
