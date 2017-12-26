@@ -14,7 +14,7 @@ const BooksDisplay = (props) => {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {props.books.map((book, index) =>
-            <li key={index}>
+            <li key={book.id}>
               <BookItem
                 index={index}
                 book={book}
