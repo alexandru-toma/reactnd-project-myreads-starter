@@ -1,12 +1,10 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
-
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+This is Alexandru Toma's project MyRead done for Udacity's React Fundamentals course. The goal of this project is to show that the student has developed the necessary skills learned through stage 1 of the course.
 
 ## TL;DR
 
-To get started developing right away:
+In order to install and launch the project, please do the following:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
@@ -21,23 +19,25 @@ To get started developing right away:
 │   ├── favicon.ico # React Icon, You may change if you wish.
 │   └── index.html # DO NOT MODIFY
 └── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
+    ├── styles
+    |   ├── App.css # Styles for your app. Feel free to customize this as you desire.
+    │   └── index.css # Global styles. You probably won't need to change anything here.
+    └── components
+    │   ├── BookItem.js # Renders a book on the page, takes props 
+    │   ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
+    │   ├── BooksDisplay.js # Displays a category of books. 
+    │   ├── ErrorPage.js # Displays an error page if the file is not found.
+    │   ├── SearchBooks.js # Displays the search page.
+    │   └── MyRead.js # Renders my Read page.
     ├── App.js # Contains logic for calling API with functions and Routing of the page.
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BookItem.js # Renders a book on the page, takes props 
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── BooksDisplay.js # Displays a category of books. 
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
     │   ├── arrow-back.svg
     │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    ├── index.js # You should not need to modify this file. It is used for DOM rendering only.
-    ├── MyRead.js # Renders my Read page.
-    └── SearchBooks.js # Displays the search page.
+    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+     
 ```
-
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
 
 ## Backend Server
 
@@ -91,6 +91,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This repository is an initial version of the MyReads application, and represents a personal project. Therefore, I most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).

@@ -9,7 +9,7 @@ const BookItem = (props) => {
                         props.book.imageLinks.smallThumbnail : 
                         'http://via.placeholder.com/128x193?text=No%20Cover' })` }}></div>
                     <div className="book-shelf-changer">
-                        <select id={props.book.id} onChange={props.handleShelfChange} value={props.currentShelf}>
+                        <select id={props.book.id} onChange={props.handleShelfChange} value={props.book.shelf}>
                             <option value="moveto" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
